@@ -25,11 +25,11 @@ export default function Footer() {
               key={i}
               style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+                fontSize: 'clamp(1rem, 3vw, 2.5rem)',
                 fontWeight: 700,
                 textTransform: 'uppercase',
                 letterSpacing: '-0.02em',
-                paddingRight: '3rem',
+                paddingRight: '2rem',
                 color: 'var(--border-light)',
               }}
             >
@@ -39,61 +39,86 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="container">
+      <div className="container" style={{ padding: '0 1.5rem' }}>
+        {/* Main grid */}
         <div
+          className="footer-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
             gap: '2rem',
-            padding: '3rem 0',
+            padding: '2.5rem 0',
           }}
-          className="footer-grid"
         >
           {/* Col 1 */}
           <div>
             <div
-              className="mono"
+              className="mono footer-label"
               style={{ color: 'var(--text-muted)', marginBottom: '1rem' }}
             >
               Navigate
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <Link href="/" className="link-raw" style={{ fontWeight: 500 }}>Home</Link>
-              <Link href="/about" className="link-raw" style={{ fontWeight: 500 }}>About</Link>
-              <Link href="/projects" className="link-raw" style={{ fontWeight: 500 }}>Work</Link>
-              <Link href="/portfolio" className="link-raw" style={{ fontWeight: 500 }}>Portfolio</Link>
-              <Link href="/contact" className="link-raw" style={{ fontWeight: 500 }}>Contact</Link>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+              {[
+                { href: '/', label: 'Home' },
+                { href: '/about', label: 'About' },
+                { href: '/work', label: 'Work' },
+                { href: '/contact', label: 'Contact' },
+              ].map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className="link-raw"
+                  style={{ fontWeight: 500, fontSize: '0.95rem' }}
+                >
+                  {l.label}
+                </Link>
+              ))}
             </div>
           </div>
 
           {/* Col 2 */}
           <div>
             <div
-              className="mono"
+              className="mono footer-label"
               style={{ color: 'var(--text-muted)', marginBottom: '1rem' }}
             >
               Connect
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <a href="https://github.com/aryan2880" target="_blank" rel="noreferrer" className="link-raw" style={{ fontWeight: 500 }}>GitHub</a>
-              <a href="https://www.linkedin.com/in/aryan-v-34089b27a/" target="_blank" rel="noreferrer" className="link-raw" style={{ fontWeight: 500 }}>LinkedIn</a>
-              <a href="mailto:aryanverma2880@gmail.com" className="link-raw" style={{ fontWeight: 500 }}>Email</a>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+              {[
+                { href: 'https://github.com/aryan2880', label: 'GitHub' },
+                { href: 'https://www.linkedin.com/in/aryan-v-34089b27a/', label: 'LinkedIn' },
+                { href: 'mailto:aryanverma2880@gmail.com', label: 'Email' },
+                { href: 'https://wa.me/919304453760', label: 'WhatsApp' },
+              ].map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  target={l.href.startsWith('http') ? '_blank' : undefined}
+                  rel={l.href.startsWith('http') ? 'noreferrer' : undefined}
+                  className="link-raw"
+                  style={{ fontWeight: 500, fontSize: '0.95rem' }}
+                >
+                  {l.label}
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Col 3 */}
           <div>
             <div
-              className="mono"
+              className="mono footer-label"
               style={{ color: 'var(--text-muted)', marginBottom: '1rem' }}
             >
               Based in
             </div>
-            <p style={{ fontWeight: 500, lineHeight: 1.6 }}>
+            <p style={{ fontWeight: 500, lineHeight: 1.7, fontSize: '0.95rem' }}>
               Mumbai, India
               <br />
               <span style={{ color: 'var(--text-muted)' }}>
-                Currently open to remote
+                Available for remote
                 <br />
                 and hybrid roles.
               </span>
@@ -103,6 +128,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div
+          className="footer-bottom"
           style={{
             borderTop: '2px solid var(--border)',
             padding: '1.5rem 0',
@@ -110,13 +136,13 @@ export default function Footer() {
             justifyContent: 'space-between',
             alignItems: 'center',
             flexWrap: 'wrap',
-            gap: '1rem',
+            gap: '0.75rem',
           }}
         >
-          <span className="mono" style={{ color: 'var(--text-muted)' }}>
+          <span className="mono" style={{ color: 'var(--text-muted)', fontSize: '0.7rem' }}>
             &copy; 2026 Aryan Verma
           </span>
-          <span className="mono" style={{ color: 'var(--text-muted)' }}>
+          <span className="mono" style={{ color: 'var(--text-muted)', fontSize: '0.7rem' }}>
             Built with Next.js &amp; Three.js
           </span>
         </div>
@@ -126,6 +152,23 @@ export default function Footer() {
         @media (max-width: 768px) {
           .footer-grid {
             grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+            padding: 2rem 0 !important;
+            text-align: center;
+          }
+          .footer-label {
+            margin-bottom: 0.75rem !important;
+          }
+          .footer-grid > div > div:last-child {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+          }
+          .footer-bottom {
+            flex-direction: column !important;
+            text-align: center;
+            gap: 0.5rem !important;
+            padding: 1rem 0 !important;
           }
         }
       `}</style>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @import "tailwindcss";
 
@@ -120,6 +120,66 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.7rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+.tag:hover {
+  background: var(--border);
+  color: var(--bg);
+}
+
+/* ─── Section divider stripe ─── */
+.section-stripe {
+  width: 100%;
+  padding: 0.6rem 0;
+  overflow: hidden;
+  border-bottom: 2px solid var(--border);
+  border-top: 2px solid var(--border);
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* ─── Glowing accent dot ─── */
+.accent-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.4); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(230, 57, 70, 0); }
+}
+
+/* ─── Card hover lift ─── */
+.card-hover {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+}
+
+/* ─── Gradient text utility ─── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent), #ff8a5c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Smooth image loading ─── */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* ─── Link underline animation ─── */
@@ -179,4 +239,99 @@ a { color: inherit; text-decoration: none; }
 
 .animate-fade-in {
   animation: fadeIn 0.8s ease both;
+}
+
+/* ─── Improved heading accents ─── */
+.heading-xl span,
+.heading-lg span {
+  transition: color 0.3s ease;
+}
+
+/* ─── Better button styles ─── */
+button, a[role='button'] {
+  cursor: pointer;
+}
+
+/* ─── Focus ring ─── */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem !important;
+  }
+  .container-wide {
+    padding: 0 1rem !important;
+  }
+  .heading-xl {
+    font-size: clamp(2.2rem, 10vw, 3.5rem) !important;
+  }
+  .heading-lg {
+    font-size: clamp(1.6rem, 6vw, 2.5rem) !important;
+  }
+  .heading-md {
+    font-size: clamp(1.1rem, 4vw, 1.5rem) !important;
+  }
+  .body-lg {
+    font-size: 1rem !important;
+  }
+  .mono {
+    font-size: 0.7rem !important;
+  }
+  .tag {
+    font-size: 0.6rem !important;
+    padding: 0.15rem 0.45rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem !important;
+  }
+  .heading-xl {
+    font-size: 2rem !important;
+  }
+  .heading-lg {
+    font-size: 1.5rem !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PERFORMANCE
+   ═══════════════════════════════════════════════════════════ */
+
+/* Reduce animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Hide scrollbar on mobile for cleaner look */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar { width: 0; height: 0; }
+}
+
+/* Optimize touch targets on mobile */
+@media (max-width: 768px) {
+  a, button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PRINT
+   ═══════════════════════════════════════════════════════════ */
+@media print {
+  nav, footer, .section-stripe { display: none !important; }
+  body { background: #fff; color: #000; }
 }

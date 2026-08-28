@@ -1,20 +1,8 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
 import { motion } from 'framer-motion';
 
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      (e.target as HTMLFormElement).reset();
-    }, 3000);
-  };
-
   return (
     <div style={{ paddingTop: 60 }}>
       {/* ─── HERO ─── */}
@@ -26,7 +14,7 @@ export default function ContactPage() {
             transition={{ duration: 0.5 }}
           >
             <div className="mono" style={{ color: 'var(--accent)', marginBottom: '1.5rem' }}>
-              Contact
+              04 — Get in Touch
             </div>
             <h1 className="heading-xl" style={{ marginBottom: '2rem' }}>
               Let&apos;s
@@ -41,26 +29,26 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ─── CONTACT CONTENT ─── */}
-      <section style={{ padding: '4rem 0' }}>
+      {/* ─── CONTACT INFO ─── */}
+      <section style={{ padding: '5rem 0' }}>
         <div className="container">
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: '1fr 1.2fr',
+              gridTemplateColumns: '1fr 1fr',
               gap: '4rem',
             }}
             className="contact-grid"
           >
-            {/* Left: Info */}
+            {/* Left: Direct Links */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <div className="mono" style={{ color: 'var(--accent)', marginBottom: '1.5rem' }}>
-                Get in Touch
+              <div className="mono" style={{ color: 'var(--accent)', marginBottom: '2rem' }}>
+                Direct Links
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -85,6 +73,11 @@ export default function ContactPage() {
                     value: 'github.com/aryan2880',
                     href: 'https://github.com/aryan2880',
                   },
+                  {
+                    label: 'WhatsApp',
+                    value: '+91 9304453760',
+                    href: 'https://wa.me/919304453760',
+                  },
                 ].map((item, i, arr) => (
                   <a
                     key={item.label}
@@ -100,23 +93,130 @@ export default function ContactPage() {
                       transition: 'all 0.2s ease',
                       color: 'var(--text)',
                     }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.paddingLeft = '1rem';
-                      e.currentTarget.style.color = 'var(--accent)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.paddingLeft = '0';
-                      e.currentTarget.style.color = 'var(--text)';
-                    }}
+                    className="contact-link"
                   >
                     <span className="mono" style={{ color: 'var(--text-muted)' }}>{item.label}</span>
                     <span style={{ fontWeight: 500, textAlign: 'right' }}>{item.value}</span>
                   </a>
                 ))}
               </div>
+            </motion.div>
+
+            {/* Right: Quick Actions */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <div className="mono" style={{ color: 'var(--accent)', marginBottom: '2rem' }}>
+                Quick Actions
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                {/* WhatsApp */}
+                <a
+                  href="https://wa.me/919304453760"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '1rem',
+                    padding: '1.25rem 1.5rem',
+                    border: '2px solid #25D366',
+                    background: '#25D36615',
+                    color: 'var(--text)',
+                    transition: 'all 0.2s ease',
+                  }}
+                  className="contact-action"
+                >
+                  <span style={{ fontSize: '1.5rem' }}>💬</span>
+                  <div>
+                    <div style={{ fontWeight: 600, marginBottom: '0.15rem' }}>WhatsApp Me</div>
+                    <div className="mono" style={{ color: 'var(--text-muted)', fontSize: '0.7rem' }}>
+                      Quick reply — +91 9304453760
+                    </div>
+                  </div>
+                </a>
+
+                {/* Email */}
+                <a
+                  href="mailto:aryanverma2880@gmail.com"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '1rem',
+                    padding: '1.25rem 1.5rem',
+                    border: '2px solid var(--border)',
+                    color: 'var(--text)',
+                    transition: 'all 0.2s ease',
+                  }}
+                  className="contact-action"
+                >
+                  <span style={{ fontSize: '1.5rem' }}>✉️</span>
+                  <div>
+                    <div style={{ fontWeight: 600, marginBottom: '0.15rem' }}>Send Email</div>
+                    <div className="mono" style={{ color: 'var(--text-muted)', fontSize: '0.7rem' }}>
+                      aryanverma2880@gmail.com
+                    </div>
+                  </div>
+                </a>
+
+                {/* LinkedIn */}
+                <a
+                  href="https://www.linkedin.com/in/aryan-v-34089b27a/"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '1rem',
+                    padding: '1.25rem 1.5rem',
+                    border: '2px solid #0A66C2',
+                    background: '#0A66C210',
+                    color: 'var(--text)',
+                    transition: 'all 0.2s ease',
+                  }}
+                  className="contact-action"
+                >
+                  <span style={{ fontSize: '1.5rem' }}>💼</span>
+                  <div>
+                    <div style={{ fontWeight: 600, marginBottom: '0.15rem' }}>LinkedIn</div>
+                    <div className="mono" style={{ color: 'var(--text-muted)', fontSize: '0.7rem' }}>
+                      Connect professionally
+                    </div>
+                  </div>
+                </a>
+
+                {/* GitHub */}
+                <a
+                  href="https://github.com/aryan2880"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '1rem',
+                    padding: '1.25rem 1.5rem',
+                    border: '2px solid var(--border)',
+                    color: 'var(--text)',
+                    transition: 'all 0.2s ease',
+                  }}
+                  className="contact-action"
+                >
+                  <span style={{ fontSize: '1.5rem' }}>🐙</span>
+                  <div>
+                    <div style={{ fontWeight: 600, marginBottom: '0.15rem' }}>GitHub</div>
+                    <div className="mono" style={{ color: 'var(--text-muted)', fontSize: '0.7rem' }}>
+                      See my code &amp; projects
+                    </div>
+                  </div>
+                </a>
+              </div>
 
               <div style={{ marginTop: '3rem' }}>
-                <div className="mono" style={{ color: 'var(--accent)', marginBottom: '1rem' }}>
+                <div className="mono" style={{ color: 'var(--text-muted)', marginBottom: '0.75rem' }}>
                   Based in
                 </div>
                 <p style={{ fontWeight: 500, lineHeight: 1.7 }}>
@@ -128,197 +228,6 @@ export default function ContactPage() {
                 </p>
               </div>
             </motion.div>
-
-            {/* Right: Form */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              <div style={{ border: '2px solid var(--border)', padding: '2.5rem' }}>
-                <div className="mono" style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                  Send a Message
-                </div>
-
-                <form onSubmit={handleSubmit}>
-                  {[
-                    { id: 'name', label: 'Name', type: 'text', placeholder: 'Your name' },
-                    { id: 'email', label: 'Email', type: 'email', placeholder: 'your@email.com' },
-                    { id: 'subject', label: 'Subject', type: 'text', placeholder: "What's this about?" },
-                  ].map((field) => (
-                    <div key={field.id} style={{ marginBottom: '1.5rem' }}>
-                      <label
-                        htmlFor={field.id}
-                        style={{
-                          display: 'block',
-                          fontFamily: 'var(--font-mono)',
-                          fontSize: '0.75rem',
-                          letterSpacing: '0.05em',
-                          textTransform: 'uppercase',
-                          marginBottom: '0.5rem',
-                          color: 'var(--text-muted)',
-                        }}
-                      >
-                        {field.label}
-                      </label>
-                      <input
-                        type={field.type}
-                        id={field.id}
-                        placeholder={field.placeholder}
-                        required
-                        style={{
-                          width: '100%',
-                          padding: '0.75rem 0',
-                          background: 'transparent',
-                          border: 'none',
-                          borderBottom: '2px solid var(--border-light)',
-                          color: 'var(--text)',
-                          fontFamily: 'var(--font-body)',
-                          fontSize: '1rem',
-                          outline: 'none',
-                          transition: 'border-color 0.2s ease',
-                        }}
-                        onFocus={(e) => (e.currentTarget.style.borderBottomColor = 'var(--accent)')}
-                        onBlur={(e) => (e.currentTarget.style.borderBottomColor = 'var(--border-light)')}
-                      />
-                    </div>
-                  ))}
-
-                  <div style={{ marginBottom: '2rem' }}>
-                    <label
-                      htmlFor="message"
-                      style={{
-                        display: 'block',
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.75rem',
-                        letterSpacing: '0.05em',
-                        textTransform: 'uppercase',
-                        marginBottom: '0.5rem',
-                        color: 'var(--text-muted)',
-                      }}
-                    >
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      placeholder="Tell me about your project..."
-                      required
-                      rows={6}
-                      style={{
-                        width: '100%',
-                        padding: '0.75rem 0',
-                        background: 'transparent',
-                        border: 'none',
-                        borderBottom: '2px solid var(--border-light)',
-                        color: 'var(--text)',
-                        fontFamily: 'var(--font-body)',
-                        fontSize: '1rem',
-                        outline: 'none',
-                        resize: 'vertical',
-                        transition: 'border-color 0.2s ease',
-                      }}
-                      onFocus={(e) => (e.currentTarget.style.borderBottomColor = 'var(--accent)')}
-                      onBlur={(e) => (e.currentTarget.style.borderBottomColor = 'var(--border-light)')}
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    style={{
-                      width: '100%',
-                      padding: '1rem',
-                      border: '2px solid var(--border)',
-                      background: 'var(--border)',
-                      color: 'var(--bg)',
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.85rem',
-                      letterSpacing: '0.08em',
-                      textTransform: 'uppercase',
-                      fontWeight: 600,
-                      cursor: 'pointer',
-                      transition: 'all 0.2s ease',
-                      pointerEvents: submitted ? 'none' : 'auto',
-                    }}
-                    onMouseEnter={(e) => {
-                      if (!submitted) {
-                        e.currentTarget.style.background = 'var(--accent)';
-                        e.currentTarget.style.borderColor = 'var(--accent)';
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      if (!submitted) {
-                        e.currentTarget.style.background = 'var(--border)';
-                        e.currentTarget.style.borderColor = 'var(--border)';
-                      }
-                    }}
-                  >
-                    {submitted ? 'Message Sent. Thank You.' : 'Send Message'}
-                  </button>
-                </form>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── PORTFOLIO SITES ─── */}
-      <section style={{ borderTop: '2px solid var(--border)', padding: '4rem 0' }}>
-        <div className="container">
-          <div className="mono" style={{ color: 'var(--accent)', marginBottom: '2rem' }}>
-            Portfolio Sites
-          </div>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '0',
-            }}
-          >
-            {[
-              'www.ndsavla.com',
-              'www.ndsavlaa.com',
-              'cardiffservices.com',
-              'www.theapplestore.in',
-              'brucedragon.com',
-              'caselaadvisors.com',
-              'theclassicpartners.com',
-              'jupiterwavetech.com',
-              'adijatours.com',
-              'novacruitix.com',
-              'glcintl.com',
-              'nawabsaab.ca',
-              'adityahomoeopathicclinic.com',
-            ].map((site, i) => (
-              <a
-                key={site}
-                href={`https://${site}`}
-                target="_blank"
-                rel="noreferrer"
-                className="link-raw"
-                style={{
-                  padding: '0.85rem 1rem',
-                  borderBottom: '1px solid var(--border-light)',
-                  fontWeight: 500,
-                  fontSize: '0.9rem',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  transition: 'all 0.2s ease',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.paddingLeft = '1.5rem';
-                  e.currentTarget.style.color = 'var(--accent)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.paddingLeft = '1rem';
-                  e.currentTarget.style.color = 'var(--text)';
-                }}
-              >
-                {site}
-                <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>&rarr;</span>
-              </a>
-            ))}
           </div>
         </div>
       </section>
@@ -326,25 +235,50 @@ export default function ContactPage() {
       {/* ─── BIG CTA ─── */}
       <section style={{ borderTop: '2px solid var(--border)', padding: '5rem 0' }}>
         <div className="container" style={{ textAlign: 'center' }}>
-          <h2 className="heading-lg" style={{ marginBottom: '1rem' }}>
-            Prefer email? Reach me at
-          </h2>
-          <a
-            href="mailto:aryanverma2880@gmail.com"
-            className="link-raw"
-            style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
-              fontWeight: 700,
-              color: 'var(--accent)',
-            }}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
           >
-            aryanverma2880@gmail.com
-          </a>
+            <h2 className="heading-lg" style={{ marginBottom: '1.5rem' }}>
+              Prefer a quick chat?
+            </h2>
+            <a
+              href="https://wa.me/919304453760"
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                padding: '1rem 2.5rem',
+                border: '2px solid #25D366',
+                background: '#25D366',
+                color: '#fff',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.85rem',
+                letterSpacing: '0.05em',
+                textTransform: 'uppercase',
+                fontWeight: 600,
+                transition: 'all 0.2s ease',
+              }}
+            >
+              💬 Chat on WhatsApp
+            </a>
+          </motion.div>
         </div>
       </section>
 
       <style jsx>{`
+        .contact-link:hover {
+          padding-left: 1rem !important;
+          color: var(--accent) !important;
+        }
+        .contact-action:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
         @media (max-width: 768px) {
           .contact-grid {
             grid-template-columns: 1fr !important;

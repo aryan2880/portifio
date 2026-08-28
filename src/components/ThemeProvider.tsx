@@ -12,7 +12,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme>('dark');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -22,7 +22,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       setTheme(saved);
       document.documentElement.dataset.theme = saved;
     } else {
-      document.documentElement.dataset.theme = 'light';
+      setTheme('dark');
+      document.documentElement.dataset.theme = 'dark';
     }
   }, []);
 
@@ -34,7 +35,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   };
 
   if (!mounted) {
-    return <div style={{ background: '#fafafa' }}>{children}</div>;
+    return <div style={{ background: '#0d0d0d' }}>{children}</div>;
   }
 
   return (

@@ -79,7 +79,7 @@ export default function Home() {
 
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <Link
-                href="/portfolio"
+                href="/work"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -157,7 +157,7 @@ export default function Home() {
       </section>
 
       {/* ─── ABOUT STRIP ─── */}
-      <section style={{ borderTop: '2px solid var(--border)', borderBottom: '2px solid var(--border)' }}>
+      <section style={{ borderTop: '2px solid var(--border)', borderBottom: '2px solid var(--border)', padding: '4rem 0' }}>
         <div className="container" style={{ padding: '4rem 2rem' }}>
           <div
             style={{
@@ -234,9 +234,8 @@ export default function Home() {
                 03 &mdash; Selected Work
               </div>
               <h2 className="heading-lg">Recent Projects</h2>
-            </div>
-            <Link
-              href="/projects"
+            </div>              <Link
+              href="/work"
               className="link-raw project-all-link"
               style={{
                 fontFamily: 'var(--font-mono)',
@@ -381,7 +380,7 @@ export default function Home() {
             ))}
           </div>
           <Link
-              href="/portfolio"
+              href="/work"
               className="link-raw project-all-link"
               style={{
                 fontFamily: 'var(--font-mono)',
