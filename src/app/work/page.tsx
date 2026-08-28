@@ -193,6 +193,7 @@ const liveSites = [
 function MockBrowser({ site, large }: { site: (typeof liveSites)[0]; large?: boolean }) {
   return (
     <div
+      className="mock-browser-wrap"
       style={{
         height: large ? 320 : 180,
         background: `linear-gradient(135deg, ${site.color}15, ${site.color}08)`,
@@ -228,6 +229,7 @@ function MockBrowser({ site, large }: { site: (typeof liveSites)[0]; large?: boo
           <div style={{ width: large ? 8 : 6, height: large ? 8 : 6, borderRadius: '50%', background: '#febc2e' }} />
           <div style={{ width: large ? 8 : 6, height: large ? 8 : 6, borderRadius: '50%', background: '#28c840' }} />
           <div
+            className="mock-url-bar"
             style={{
               flex: 1,
               marginLeft: large ? 8 : 6,
@@ -260,6 +262,7 @@ function MockBrowser({ site, large }: { site: (typeof liveSites)[0]; large?: boo
             {[1, 2, 3].map((n) => (
               <div
                 key={n}
+                className="mock-img-placeholder"
                 style={{
                   width: large ? 100 : 55,
                   height: large ? 65 : 35,
@@ -273,6 +276,7 @@ function MockBrowser({ site, large }: { site: (typeof liveSites)[0]; large?: boo
       </div>
       {/* LIVE badge */}
       <div
+        className="live-badge"
         style={{
           position: 'absolute',
           top: large ? 16 : 8,
@@ -299,7 +303,7 @@ export default function WorkPage() {
       {/* ════════════════════════════════════════════════════════
           HERO
           ════════════════════════════════════════════════════════ */}
-      <section style={{ borderBottom: '2px solid var(--border)', padding: '5rem 0 4rem' }}>
+      <section style={{ borderBottom: '2px solid var(--border)', padding: '5rem 0 4rem' }} className="work-hero">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -321,16 +325,7 @@ export default function WorkPage() {
             </p>
 
             {/* Stats strip */}
-            <div
-              style={{
-                display: 'flex',
-                gap: '4rem',
-                marginTop: '3rem',
-                paddingTop: '2rem',
-                borderTop: '1px solid var(--border-light)',
-                flexWrap: 'wrap',
-              }}
-            >
+            <div className="work-stats-strip">
               {[
                 { value: '4', label: 'Technical Projects' },
                 { value: '14+', label: 'Live Websites' },
@@ -353,29 +348,15 @@ export default function WorkPage() {
       <section style={{ borderBottom: '2px solid var(--border)' }}>
         {/* Section header */}
         <div style={{ borderBottom: '2px solid var(--border)' }}>
-          <div className="container" style={{ padding: '2rem 2rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <span
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: 'clamp(1.8rem, 4vw, 3rem)',
-                  fontWeight: 700,
-                  letterSpacing: '-0.03em',
-                }}
-              >
-                Technical Projects
-              </span>
-              <span
-                className="mono"
-                style={{
-                  color: 'var(--text-muted)',
-                  borderLeft: '2px solid var(--border)',
-                  paddingLeft: '1rem',
-                }}
-              >
-                {techProjects.length} featured
-              </span>
-            </div>
+          <div className="container work-section-header">
+            <span className="work-section-title">
+              Technical Projects
+            </span>
+            <span
+              className="mono work-section-count"
+            >
+              {techProjects.length} featured
+            </span>
           </div>
         </div>
 
@@ -395,19 +376,10 @@ export default function WorkPage() {
           >
             <div className="container">
               {/* Header row */}
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: '80px 1fr auto',
-                  gap: '2rem',
-                  alignItems: 'start',
-                  marginBottom: '2.5rem',
-                }}
-                className="project-header"
-              >
+              <div className="project-header">
                 <span
-                  className="mono"
-                  style={{ color: project.color, fontSize: '2rem', fontWeight: 700 }}
+                  className="mono project-id"
+                  style={{ color: project.color }}
                 >
                   {project.id}
                 </span>
@@ -420,15 +392,7 @@ export default function WorkPage() {
               </div>
 
               {/* Description + details */}
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
-                  gap: '3rem',
-                  paddingLeft: '80px',
-                }}
-                className="project-body"
-              >
+              <div className="project-body">
                 <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, fontSize: '1.05rem' }}>
                   {project.description}
                 </p>
@@ -455,7 +419,7 @@ export default function WorkPage() {
               </div>
 
               {/* Tech tags */}
-              <div style={{ paddingLeft: '80px', marginTop: '2rem' }} className="project-body">
+              <div className="project-tags">
                 <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                   {project.tech.map((t) => (
                     <span key={t} className="tag">{t}</span>
@@ -470,13 +434,7 @@ export default function WorkPage() {
       {/* ════════════════════════════════════════════════════════
           DIVIDER / BAND
           ════════════════════════════════════════════════════════ */}
-      <div
-        style={{
-          borderBottom: '2px solid var(--border)',
-          padding: '1.5rem 0',
-          overflow: 'hidden',
-        }}
-      >
+      <div className="work-marquee-wrap">
         <div style={{ display: 'flex', whiteSpace: 'nowrap', animation: 'marquee 15s linear infinite' }}>
           {Array(6).fill(null).map((_, i) => (
             <span
@@ -503,49 +461,30 @@ export default function WorkPage() {
       <section style={{ borderBottom: '2px solid var(--border)' }}>
         {/* Section header */}
         <div style={{ borderBottom: '2px solid var(--border)' }}>
-          <div className="container" style={{ padding: '2rem 2rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <span
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: 'clamp(1.8rem, 4vw, 3rem)',
-                  fontWeight: 700,
-                  letterSpacing: '-0.03em',
-                }}
-              >
-                Live Websites
-              </span>
-              <span
-                className="mono"
-                style={{
-                  color: 'var(--text-muted)',
-                  borderLeft: '2px solid var(--border)',
-                  paddingLeft: '1rem',
-                }}
-              >
-                {liveSites.length} deployed
-              </span>
-            </div>
+          <div className="container work-section-header">
+            <span className="work-section-title">
+              Live Websites
+            </span>
+            <span
+              className="mono work-section-count"
+            >
+              {liveSites.length} deployed
+            </span>
           </div>
         </div>
 
         {/* Featured large card */}
-        <div className="container" style={{ padding: '3rem 2rem' }}>
+        <div className="container work-featured-wrap">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            style={{
-              border: '2px solid var(--border)',
-              marginBottom: '2.5rem',
-              transition: 'transform 0.2s ease',
-            }}
             className="featured-card"
           >
             <MockBrowser site={liveSites[0]} large />
-            <div style={{ padding: '2rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
+            <div style={{ padding: '2rem' }} className="featured-card-body">
+              <div className="featured-card-inner">
                 <div>
                   <div className="mono" style={{ color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
                     FEATURED
@@ -575,7 +514,7 @@ export default function WorkPage() {
           </motion.div>
 
           {/* Grid */}
-          <div className="portfolio-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: '1.5rem' }}>
+          <div className="portfolio-grid">
             {liveSites.slice(1).map((site, i) => (
               <motion.div
                 key={site.id}
@@ -583,14 +522,8 @@ export default function WorkPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-30px' }}
                 transition={{ duration: 0.4, delay: i * 0.04 }}
-                style={{
-                  border: '2px solid var(--border)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                }}
-                whileHover={{ y: -4, boxShadow: '0 8px 30px rgba(0,0,0,0.08)' }}
                 className="site-card"
+                whileHover={{ y: -4, boxShadow: '0 8px 30px rgba(0,0,0,0.08)' }}
               >
                 <MockBrowser site={site} />
                 <div style={{ padding: '1.25rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
@@ -634,7 +567,7 @@ export default function WorkPage() {
       {/* ════════════════════════════════════════════════════════
           CTA
           ════════════════════════════════════════════════════════ */}
-      <section style={{ padding: '6rem 0' }}>
+      <section className="work-cta-section">
         <div className="container" style={{ textAlign: 'center' }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -684,19 +617,198 @@ export default function WorkPage() {
           background: var(--accent);
           border-color: var(--accent);
         }
+        .featured-card {
+          border: 2px solid var(--border);
+          margin-bottom: 2.5rem;
+          transition: transform 0.2s ease;
+        }
         .featured-card:hover {
           transform: translateY(-2px);
         }
+
+        /* ── Section headers ── */
+        .work-section-header {
+          padding: 2rem;
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+        .work-section-title {
+          font-family: var(--font-heading);
+          font-size: clamp(1.8rem, 4vw, 3rem);
+          font-weight: 700;
+          letter-spacing: -0.03em;
+        }
+        .work-section-count {
+          color: var(--text-muted);
+          border-left: 2px solid var(--border);
+          padding-left: 1rem;
+        }
+
+        /* ── Stats strip ── */
+        .work-stats-strip {
+          display: flex;
+          gap: 4rem;
+          margin-top: 3rem;
+          padding-top: 2rem;
+          border-top: 1px solid var(--border-light);
+          flex-wrap: wrap;
+        }
+
+        /* ── Project header ── */
+        .project-header {
+          display: grid;
+          grid-template-columns: 80px 1fr auto;
+          gap: 2rem;
+          align-items: start;
+          margin-bottom: 2.5rem;
+        }
+        .project-id {
+          font-size: 2rem;
+          font-weight: 700;
+        }
+
+        /* ── Project body ── */
+        .project-body {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 3rem;
+          padding-left: 80px;
+        }
+
+        /* ── Project tags ── */
+        .project-tags {
+          padding-left: 80px;
+          margin-top: 2rem;
+        }
+
+        /* ── Marquee ── */
+        .work-marquee-wrap {
+          border-bottom: 2px solid var(--border);
+          padding: 1.5rem 0;
+          overflow: hidden;
+        }
+
+        /* ── Featured card body ── */
+        .featured-card-body {
+          padding: 2rem;
+        }
+        .featured-card-inner {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+
+        /* ── Portfolio grid ── */
+        .portfolio-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+          gap: 1.5rem;
+        }
+        .site-card {
+          border: 2px solid var(--border);
+          display: flex;
+          flex-direction: column;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* ── CTA section ── */
+        .work-cta-section {
+          padding: 6rem 0;
+        }
+
+        /* ══════════════════════════════════════════════════
+           TABLET (768px)
+           ══════════════════════════════════════════════════ */
         @media (max-width: 768px) {
+          .work-hero {
+            padding: 3rem 0 2.5rem !important;
+          }
+          .work-section-header {
+            padding: 1.5rem 0;
+          }
+          .work-section-header .container {
+            padding: 0 1rem;
+          }
+          .work-stats-strip {
+            gap: 1.5rem;
+          }
+          .project-block {
+            padding: 2rem 0 !important;
+          }
           .project-header {
             grid-template-columns: 1fr !important;
+            gap: 0.75rem !important;
+            margin-bottom: 1.5rem !important;
+          }
+          .project-id {
+            font-size: 1.4rem !important;
           }
           .project-body {
             grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+            padding-left: 0 !important;
+          }
+          .project-tags {
             padding-left: 0 !important;
           }
           .portfolio-grid {
             grid-template-columns: 1fr !important;
+          }
+          .work-featured-wrap {
+            padding: 2rem 0;
+          }
+          .featured-card-body {
+            padding: 1.25rem !important;
+          }
+          .featured-card-inner {
+            flex-direction: column !important;
+          }
+          .work-cta-section {
+            padding: 3rem 0 !important;
+          }
+          .work-marquee-wrap {
+            padding: 1rem 0;
+          }
+        }
+
+        /* ══════════════════════════════════════════════════
+           MOBILE (480px)
+           ══════════════════════════════════════════════════ */
+        @media (max-width: 480px) {
+          .work-hero {
+            padding: 2rem 0 2rem !important;
+          }
+          .work-stats-strip {
+            gap: 1rem;
+          }
+          .project-block {
+            padding: 1.5rem 0 !important;
+          }
+          .mock-browser-wrap {
+            height: 140px !important;
+          }
+          .live-badge {
+            top: 4px !important;
+            right: 4px !important;
+            padding: 0.15rem 0.35rem !important;
+            font-size: 0.5rem !important;
+          }
+          .mock-url-bar {
+            font-size: 0.5rem !important;
+            padding: 0.1rem 0.3rem !important;
+          }
+          .mock-img-placeholder {
+            width: 40px !important;
+            height: 25px !important;
+          }
+          .featured-card-body {
+            padding: 1rem !important;
+          }
+          .work-cta-section {
+            padding: 2.5rem 0 !important;
           }
         }
       `}</style>

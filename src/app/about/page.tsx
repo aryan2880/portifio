@@ -68,7 +68,7 @@ export default function AboutPage() {
   return (
     <div style={{ paddingTop: 60 }}>
       {/* ─── HERO ─── */}
-      <section style={{ borderBottom: '2px solid var(--border)', padding: '5rem 0 4rem' }}>
+      <section className="about-hero">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -97,12 +97,12 @@ export default function AboutPage() {
       <section style={{ borderBottom: '2px solid var(--border)' }}>
         <div className="container" style={{ padding: '4rem 2rem' }}>
           <div
+            className="bio-grid"
             style={{
               display: 'grid',
               gridTemplateColumns: '1fr 1fr',
               gap: '4rem',
             }}
-            className="bio-grid"
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -110,7 +110,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <div className="mono" style={{ color: 'var(--accent)', marginBottom: '1rem' }}>
+              <div className="mono" style={{ color: 'var(--accent)', marginBottom: '1rem' , marginTop:'2rem'}}>
                 Background
               </div>
               <p className="body-lg" style={{ marginBottom: '1.5rem' }}>
@@ -145,6 +145,7 @@ export default function AboutPage() {
                 ].map(([label, value]) => (
                   <div
                     key={label}
+                    className="fact-row"
                     style={{
                       display: 'flex',
                       justifyContent: 'space-between',
@@ -169,12 +170,12 @@ export default function AboutPage() {
             Philosophy
           </div>
           <div
+            className="values-grid"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(2, 1fr)',
               gap: '0',
             }}
-            className="values-grid"
           >
             {values.map((v, i) => (
               <motion.div
@@ -183,6 +184,7 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
+                className="value-card"
                 style={{
                   padding: '2rem',
                   borderRight: i % 2 === 0 ? '2px solid var(--border)' : 'none',
@@ -190,8 +192,8 @@ export default function AboutPage() {
                 }}
               >
                 <div
-                  className="mono"
-                  style={{ color: 'var(--accent)', marginBottom: '1rem', fontSize: '1.5rem' }}
+                  className="mono value-number"
+                  style={{ color: 'var(--accent)' }}
                 >
                   {v.number}
                 </div>
@@ -204,40 +206,56 @@ export default function AboutPage() {
       </section>
 
       {/* ─── EXPERIENCE ─── */}
-      <section style={{ padding: '5rem 0' }}>
+      <section style={{ borderBottom: '2px solid var(--border)', padding: '5rem 0' }}>
         <div className="container">
-          <div className="mono" style={{ color: 'var(--accent)', marginBottom: '2rem' }}>
-            Experience
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3rem' }}>
+            <div className="mono" style={{ color: 'var(--accent)' }}>
+              Experience
+            </div>
+            <div style={{ flex: 1, height: 1, background: 'var(--border-light)' }} />
+            <div className="mono" style={{ color: 'var(--text-muted)' }}>
+              {timeline.length} roles
+            </div>
           </div>
-          <div>
+
+          <div className="exp-timeline">
+            {/* Vertical line */}
+            <div className="exp-timeline-line" />
+
             {timeline.map((exp, i) => (
               <motion.div
                 key={exp.role}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                style={{
-                  borderTop: i === 0 ? '2px solid var(--border)' : '1px solid var(--border-light)',
-                  borderBottom: '2px solid var(--border)',
-                  padding: '2rem 0',
-                  display: 'grid',
-                  gridTemplateColumns: '180px 1fr 1fr',
-                  gap: '2rem',
-                  alignItems: 'start',
-                }}
-                className="exp-row"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-30px' }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="exp-card"
               >
-                <div className="mono" style={{ color: 'var(--text-muted)', paddingTop: '0.3rem' }}>
+                {/* Dot on timeline */}
+                <div className="exp-dot" />
+
+                {/* Period badge */}
+                <div className="exp-card-period">
                   {exp.period}
                 </div>
-                <div>
-                  <h3 className="heading-md">{exp.role}</h3>
-                  <div className="mono" style={{ color: 'var(--accent)', marginTop: '0.25rem' }}>
-                    {exp.company}
+
+                {/* Card content */}
+                <div className="exp-card-body">
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.5rem' }}>
+                    <div>
+                      <h3 className="heading-md" style={{ marginBottom: '0.3rem' }}>{exp.role}</h3>
+                      <div className="mono" style={{ color: 'var(--accent)' }}>
+                        {exp.company}
+                      </div>
+                    </div>
+                    <span className="mono" style={{ color: 'var(--text-muted)', fontSize: '0.65rem' }}>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
                   </div>
+                  <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, marginTop: '1rem', fontSize: '0.95rem' }}>
+                    {exp.description}
+                  </p>
                 </div>
-                <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>{exp.description}</p>
               </motion.div>
             ))}
           </div>
@@ -254,6 +272,7 @@ export default function AboutPage() {
             {education.map((edu, i) => (
               <div
                 key={edu.degree}
+                className="edu-card"
                 style={{
                   padding: '1.5rem 2rem',
                   borderRight: i === 0 ? '2px solid var(--border)' : 'none',
@@ -274,10 +293,11 @@ export default function AboutPage() {
           <div className="mono" style={{ color: 'var(--accent)', marginBottom: '2rem' }}>
             Certifications
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
             {certifications.map((cert, i) => (
               <div
                 key={cert.name}
+                className="cert-row"
                 style={{
                   padding: '1rem 0',
                   borderBottom: i < certifications.length - 1 ? '1px solid var(--border-light)' : '2px solid var(--border)',
@@ -294,32 +314,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <style jsx>{`
-        @media (max-width: 768px) {
-          .bio-grid {
-            grid-template-columns: 1fr !important;
-            gap: 2rem !important;
-          }
-          .values-grid {
-            grid-template-columns: 1fr !important;
-          }
-          .values-grid > div {
-            border-right: none !important;
-            border-bottom: 1px solid var(--border-light) !important;
-          }
-          .exp-row {
-            grid-template-columns: 1fr !important;
-            gap: 0.5rem !important;
-          }
-          .edu-grid {
-            grid-template-columns: 1fr !important;
-          }
-          .edu-grid > div {
-            border-right: none !important;
-            border-bottom: 1px solid var(--border-light) !important;
-          }
-        }
-      `}</style>
+      {/* Mobile overrides for about page are in globals.css */}
     </div>
   );
 }
