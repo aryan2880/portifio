@@ -96,11 +96,11 @@ export default function PageScene3D({ variant = 'about' }: { variant?: string })
   const shapes = configs[variant] || configs.about;
 
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
+    <div className="scene3d-wrapper" style={{ position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
       <Canvas
         camera={{ position: [0, 0, 10], fov: 45 }}
         gl={{ antialias: true, alpha: true }}
-        style={{ background: 'transparent' }}
+        style={{ background: 'transparent', pointerEvents: 'none' }}
       >
         <ambientLight intensity={0.5} />
 

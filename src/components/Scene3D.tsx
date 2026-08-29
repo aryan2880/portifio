@@ -90,6 +90,7 @@ function SubtleParticles() {
 export default function Scene3D({ variant = 'home' }: { variant?: string }) {
   return (
     <div
+      className="scene3d-wrapper"
       style={{
         position: 'fixed',
         inset: 0,
@@ -100,7 +101,7 @@ export default function Scene3D({ variant = 'home' }: { variant?: string }) {
       <Canvas
         camera={{ position: [0, 0, 10], fov: 45 }}
         gl={{ antialias: true, alpha: true }}
-        style={{ background: 'transparent' }}
+        style={{ background: 'transparent', pointerEvents: 'none' }}
       >
         <ambientLight intensity={0.5} />
 

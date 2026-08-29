@@ -62,16 +62,11 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
+              className="nav-link"
               style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.75rem',
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
                 color: pathname === link.href ? 'var(--text)' : 'var(--text-muted)',
                 fontWeight: pathname === link.href ? 600 : 400,
                 borderBottom: pathname === link.href ? '2px solid var(--accent)' : '2px solid transparent',
-                paddingBottom: 2,
-                transition: 'all 0.2s ease',
               }}
             >
               {link.label}
@@ -92,7 +87,20 @@ export default function Navbar() {
               cursor: 'pointer',
               fontSize: '0.75rem',
               fontFamily: 'var(--font-mono)',
-              transition: 'all 0.2s ease',
+              transition: 'all 0.3s ease',
+              borderRadius: 0,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'var(--accent)';
+              e.currentTarget.style.borderColor = 'var(--accent)';
+              e.currentTarget.style.color = '#fff';
+              e.currentTarget.style.transform = 'rotate(180deg)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'none';
+              e.currentTarget.style.borderColor = 'var(--border)';
+              e.currentTarget.style.color = 'var(--text)';
+              e.currentTarget.style.transform = 'none';
             }}
           >
             {theme === 'dark' ? 'S' : 'M'}
@@ -166,19 +174,9 @@ export default function Navbar() {
             </Link>
           ))}
           <button
+            className="btn-outline"
             onClick={() => { toggleTheme(); setMenuOpen(false); }}
-            style={{
-              marginTop: '1rem',
-              background: 'none',
-              border: '2px solid var(--border)',
-              padding: '0.5rem 1.5rem',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.8rem',
-              letterSpacing: '0.05em',
-              textTransform: 'uppercase',
-              cursor: 'pointer',
-              color: 'var(--text)',
-            }}
+            style={{ marginTop: '1rem' }}
           >
             {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
           </button>
