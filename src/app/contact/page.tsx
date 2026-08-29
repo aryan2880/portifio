@@ -1,10 +1,15 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
+
+const PageScene3D = dynamic(() => import('@/components/PageScene3D'), { ssr: false });
 
 export default function ContactPage() {
   return (
     <div style={{ paddingTop: 60 }}>
+      <PageScene3D variant="contact" />
+
       {/* ─── HERO ─── */}
       <section style={{ borderBottom: '2px solid var(--border)', padding: '5rem 0 4rem' }}>
         <div className="container">

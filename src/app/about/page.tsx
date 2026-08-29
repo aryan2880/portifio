@@ -1,6 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
+
+const PageScene3D = dynamic(() => import('@/components/PageScene3D'), { ssr: false });
 
 const timeline = [
   {
@@ -67,6 +70,8 @@ const certifications = [
 export default function AboutPage() {
   return (
     <div style={{ paddingTop: 60 }}>
+      <PageScene3D variant="about" />
+
       {/* ─── HERO ─── */}
       <section className="about-hero">
         <div className="container">

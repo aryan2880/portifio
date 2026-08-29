@@ -350,13 +350,14 @@ export default function Home() {
             }}
           >
             {[
-              'ndsavla.com',
+              'ndsavlaa.com',
               'cardiffservices.com',
               'theapplestore.in',
+              'caselaadvisors.com',
               'brucedragon.com',
               'jupiterwavetech.com',
               'novacruitix.com',
-              'theapplestore.in',
+              
               'glcintl.com'
             ].map((site, i) => (
               <a
@@ -409,37 +410,63 @@ export default function Home() {
             <span style={{ color: 'var(--accent)' }}>Let&apos;s build it.</span>
           </h2>
           <Link
-            href="/contact"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '1rem 2.5rem',
-              border: '2px solid var(--border)',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.85rem',
-              letterSpacing: '0.05em',
-              textTransform: 'uppercase',
-              fontWeight: 600,
-              background: 'var(--border)',
-              color: 'var(--bg)',
-              transition: 'all 0.2s ease',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'var(--accent)';
-              e.currentTarget.style.borderColor = 'var(--accent)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'var(--border)';
-              e.currentTarget.style.borderColor = 'var(--border)';
-            }}
-          >
-            Contact Me
-          </Link>
+                href="/contact"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  padding: '0.8rem 2rem',
+                  border: '2px solid var(--border)',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.8rem',
+                  letterSpacing: '0.05em',
+                  textTransform: 'uppercase',
+                  fontWeight: 600,
+                  background: 'var(--border)',
+                  color: 'var(--bg)',
+                  transition: 'all 0.2s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'var(--accent)';
+                  e.currentTarget.style.borderColor = 'var(--accent)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'var(--border)';
+                  e.currentTarget.style.borderColor = 'var(--border)';
+                }}
+              >
+                Contact Me
+              </Link>
         </div>
       </section>
 
       <style jsx>{`
+        .cta-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 1rem 2.5rem;
+          border: 2px solid var(--border);
+          font-family: var(--font-mono);
+          font-size: 0.85rem;
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
+          font-weight: 600;
+          background: var(--border);
+          color: var(--bg);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          cursor: pointer;
+        }
+        .cta-btn:hover {
+          background: var(--accent);
+          border-color: var(--accent);
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        .cta-btn:active {
+          transform: translateY(0);
+          box-shadow: none;
+        }
         @media (max-width: 768px) {
           .about-strip-grid {
             grid-template-columns: 1fr !important;

@@ -1,6 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
+
+const PageScene3D = dynamic(() => import('@/components/PageScene3D'), { ssr: false });
 
 /* ─── Technical Projects ─── */
 const techProjects = [
@@ -300,6 +303,8 @@ function MockBrowser({ site, large }: { site: (typeof liveSites)[0]; large?: boo
 export default function WorkPage() {
   return (
     <div style={{ paddingTop: 60 }}>
+      <PageScene3D variant="work" />
+
       {/* ════════════════════════════════════════════════════════
           HERO
           ════════════════════════════════════════════════════════ */}
