@@ -262,7 +262,7 @@ export default function Home() {
             }}
           >
             {[
-              { label: 'Frontend', items: 'React.js / Next.js / Three.js / Tailwind CSS' },
+              { label: 'Frontend', items: 'React.js / Next.js / Three.js / Tailwind CSS/ HTML / CSS / JavaScript'},
               { label: 'Backend', items: 'Node.js / Express.js / Python / Flask' },
               { label: 'Databases', items: 'MySQL / MongoDB / SQLite / GraphQL' },
               { label: 'Other', items: 'WordPress / Shopify / SEO / Google Setup / Docker' },
