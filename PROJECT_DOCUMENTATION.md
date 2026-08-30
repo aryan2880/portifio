@@ -1,6 +1,6 @@
 # Project Documentation — Portfolio
 
-یہ دستاویز اس پروجیکٹ کی مختصر وضاحت، سیٹ اپ اور ترقیاتی رہنمائی فراہم کرتی ہے۔
+this my protfolio made by Aryan verma
 
 ## Overview
 
@@ -81,4 +81,3 @@ Check `package.json` for exact script names.
 
 ---
 
-اگر آپ چاہیں تو میں اس دستاویز کا مکمل اردو ترجمہ، مزید تفصیل، یا `README.md` میں شامل کرنے کے لئے ایک مختصر خلاصہ بھی بنا دوں۔
